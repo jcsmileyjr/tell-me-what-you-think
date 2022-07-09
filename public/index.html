@@ -28,8 +28,7 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"><canvas id="mycanvas"></canvas>
-    </div>
+    <div id="root"></div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -41,83 +40,4 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
-  <script>
-    var sketchProc = function(processingInstance) {
-	with (processingInstance) {
-		size(window.innerWidth, window.innerHeight); 
-		//ellipseMode(RADIUS);
-    //textAlign(CENTER, CENTER);
-    frameRate(60);
-    smooth();
-		
-		/*************
-		 * VARIABLES
-		 **************/
-		
-		/*
-
-		TODO:
-
-		*/
-
-		var backgroundColor = color(0, 13, 43); // Canvas background color
-		var winWidth = window.innerWidth;
-		var winHeight = window.innerHeight;
-		var xCenter = winWidth/2; // Canvas center
-		var yCenter = winHeight/2; // Canvas center
-		
-		/* START YOUR CODE BELOW */
-		
-		var rainNum = 400; // How many Rain Drops
-		var xPositions = new Array(rainNum);
-		randomizeArray(xPositions, 0, winWidth);
-		var yPositions = new Array(rainNum);
-		randomizeArray(yPositions, 0, winHeight);
-		var rainSize = new Array(rainNum);
-		randomizeArray(rainSize, 0, 1);
-		
-		var dropColor = [];
-		
-		/*************
-		 * HELPER FUNCTIONS
-		 **************/ 
-
-		// Function: Take (array) length and randomize numbers based on lower range (low) and upper range (high)
-		function randomizeArray(array, low, high) {
-				for (var i=0; i<array.length; i++) {
-						array[i] = random(low, high);
-				}
-		}
-
-		
-		
-		/* Draw Function */
-		draw = function() {
-			background(backgroundColor);
-
-				for (var i = 0; i < xPositions.length; i++) {
-						noStroke();
-						fill(219, 241, 255);
-						ellipse(xPositions[i], yPositions[i], rainSize[i], 13);
-						//image(b, xPositions[i]-50, yPositions[i]*1.5, 30, 50);
-						yPositions[i] += random(0, 30);
-						if (yPositions[i] > winHeight){
-								yPositions[i] = 0;
-						}
-				}
-
-				// if(mousePressed) {
-				// 		xPositions.push(mouseX);
-				// 		yPositions.push(mouseY);
-				// }
-		};
-
-		/* END YOUR CODE */
-		
-}}
-
-// Add Canvas to Page
-var canvas = document.getElementById("mycanvas"); 
-var processingInstance = new Processing(canvas, sketchProc); 
-  </script>
 </html>

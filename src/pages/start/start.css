@@ -36,7 +36,7 @@
 }
 
 /*Conversation section*/
-.conversation__header--style {
+.conversation__header--style, .thoughts__header--style {
     color:var(--Accent-Dark-Orange);
 }
 
@@ -55,4 +55,8 @@
     padding:10px;
     font-size: small;
     
+}
+
+.thoughts__header--style {
+    text-align: center;
 }
