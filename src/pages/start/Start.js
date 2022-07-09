@@ -41,7 +41,7 @@ const Start = ()=> {
             </section>
             <section className='start__section--container'>
                 <p className='thoughts__header--style'>What are your thoughts</p>
-                <textarea className='thoughts__textarea--style' id="thoughts" rows="10" cols="41" />
+                <textarea className='thoughts__textarea--style' id="thoughts" rows="10" cols="33" />
             </section>
         </main>
     );

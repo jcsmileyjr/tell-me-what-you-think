@@ -1,4 +1,6 @@
+main {
 
+}
 .start__section--container {
     margin: 20px;
     
@@ -59,4 +61,8 @@
 
 .thoughts__header--style {
     text-align: center;
+}
+
+.thoughts__textarea--style {
+    padding: 10px;
 }

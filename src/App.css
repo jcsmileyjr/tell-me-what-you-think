@@ -25,6 +25,10 @@
   url("https://cdn.discordapp.com/attachments/744182992037216260/990016273456988240/rain3.png");
   
   animation: snow 1.5s linear  infinite ;
+
+  overflow-y: visible;
+  scrollbar-color: rebeccapurple green;
+  scrollbar-width: thin;
 }
 @keyframes snow {
   0% {
