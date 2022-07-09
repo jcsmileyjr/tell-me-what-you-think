@@ -34,3 +34,25 @@
 .header__text--style {
     color: var(--Primary-Stone-White);
 }
+
+/*Conversation section*/
+.conversation__header--style {
+    color:var(--Accent-Dark-Orange);
+}
+
+.conversation__title--style {
+    color:var(--Primary-Stone-White);
+}
+
+.conversation__header--style, .conversation__title--style {
+    text-align: center;
+    margin-top:2px;
+    margin-bottom: 2px;
+}
+
+.conversation__content--style {
+    background-color: var(--Primary-Stone-White);
+    padding:10px;
+    font-size: small;
+    
+}
