@@ -19,7 +19,7 @@ const Start = ()=> {
             </section>
             <section className='start__section--container'>
                 <p className='conversation__header--style'>Today's Conversation</p>
-                <h1 className='conversation__title--style'>Serenity</h1>
+                <h1 className='conversation__title--style'>Serenity Prayer</h1>
                 <p className='conversation__content--style'>God, give us grace to accept with serenity<br></br>
                 the things that cannot be changed,<br></br>
                 Courage to change the things
