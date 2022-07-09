@@ -66,3 +66,22 @@ main {
 .thoughts__textarea--style {
     padding: 10px;
 }
+
+.thoughts__button--container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.thoughts__button--style {
+    padding: 5px 30px;
+    font-weight: bold;
+    background-color: var(--Accent-Dark-Orange);
+    color: var(--Primary-Stone-White);
+    letter-spacing: 1px;
+    border: none;
+}
+
+.thoughts__button--style, .thoughts__textarea--style, .conversation__content--style, .start__display--container {
+    border-radius: 10px;
+}

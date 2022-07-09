@@ -42,6 +42,9 @@ const Start = ()=> {
             <section className='start__section--container'>
                 <p className='thoughts__header--style'>What are your thoughts</p>
                 <textarea className='thoughts__textarea--style' id="thoughts" rows="10" cols="33" />
+                <div className='thoughts__button--container'>
+                    <button className='thoughts__button--style'>NEXT</button>
+                </div>
             </section>
         </main>
     );

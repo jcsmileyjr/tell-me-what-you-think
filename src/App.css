@@ -27,7 +27,7 @@
   animation: snow 1.5s linear  infinite ;
 
   overflow-y: visible;
-  scrollbar-color: rebeccapurple green;
+  scrollbar-color: var(--Primary-Medium-Orange);
   scrollbar-width: thin;
 }
 @keyframes snow {
