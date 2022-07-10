@@ -1,0 +1,22 @@
+
+.thankYou__header--style, .thankYou__title--style {
+    text-align: center;
+    color: var(--Primary-Medium-Orange)
+}
+
+.thankYou__title--style {
+    text-decoration: underline;
+}
+
+.thankyou__main--container {
+    margin:20px
+}
+
+.thankYou__instructions--style {
+    color: var(--Primary-Medium-Orange)
+}
+
+.thankYou__content--style {
+    margin-bottom: 50px;
+    background-color: var(--Primary-Stone-White);
+}
