@@ -66,6 +66,7 @@ main {
 
 .thoughts__textarea--style {
     padding: 10px;
+    width: 100%;
 }
 
 .thoughts__button--container {
