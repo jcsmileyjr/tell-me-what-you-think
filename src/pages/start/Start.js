@@ -1,7 +1,7 @@
 import './start.css';
 import React, {useState} from 'react';
 
-const Start = ()=> {
+const Start = ({next})=> {
     const [scaleHeader, setScaleHeader] = useState(false);
     const [hideHeader, setHideHeader] = useState(false);
 
@@ -55,7 +55,7 @@ const Start = ()=> {
                 <p className='thoughts__header--style'>What are your thoughts</p>
                 <textarea onFocus={() => hideSection()} onBlur={() => showSection()} className='thoughts__textarea--style' id="thoughts" rows="12" />
                 <div className='thoughts__button--container'>
-                    <button className='thoughts__button--style'>NEXT</button>
+                    <button onClick={() => next("thankyou") } className='thoughts__button--style'>NEXT</button>
                 </div>
             </section>
         </main>
