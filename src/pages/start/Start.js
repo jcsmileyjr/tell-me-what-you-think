@@ -2,9 +2,21 @@ import './start.css';
 import React, {useState} from 'react';
 
 const Start = ()=> {
+    const [scaleHeader, setScaleHeader] = useState(false);
+    const [hideHeader, setHideHeader] = useState(false);
+
+    const hideSection = () => {
+        setScaleHeader(true);
+        const interval = setInterval(() => {setHideHeader(true); clearInterval(interval)},500);
+    }
+
+    const showSection = () => {
+        setScaleHeader(false);
+        const interval = setInterval(() => {setHideHeader(false); clearInterval(interval)},500);
+    }
     return(
         <main>
-            <section className='start__section--container'>
+            <section className={`start__section--container ${scaleHeader? 'scale-out-center':"scale-in-center"} ${hideHeader?'hide':'show'}`}>
                 <div className='start__display--container'>
                     <div className='start__header--container'>
                         <p className='header__title--style'>Articles Read</p>
@@ -41,7 +53,7 @@ const Start = ()=> {
             </section>
             <section className='start__section--container'>
                 <p className='thoughts__header--style'>What are your thoughts</p>
-                <textarea className='thoughts__textarea--style' id="thoughts" rows="10" cols="33" />
+                <textarea onFocus={() => hideSection()} onBlur={() => showSection()} className='thoughts__textarea--style' id="thoughts" rows="10" cols="33" />
                 <div className='thoughts__button--container'>
                     <button className='thoughts__button--style'>NEXT</button>
                 </div>
