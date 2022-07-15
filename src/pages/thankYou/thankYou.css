@@ -20,3 +20,14 @@
     margin-bottom: 50px;
     background-color: var(--Primary-Stone-White);
 }
+
+@media only screen and (min-width:500px){
+    .thankyou__main--container {
+      margin: auto;
+      max-width: 475px;
+    }
+
+    .thankYou__instructions--style {
+        text-align: center;
+    }
+  }
