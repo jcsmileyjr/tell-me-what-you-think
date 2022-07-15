@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 const Start = ({next})=> {
     const [scaleHeader, setScaleHeader] = useState(false);
     const [hideHeader, setHideHeader] = useState(false);
+    const [userThoughts, setUserThoughts] = useState("");
 
     const hideSection = () => {
         setScaleHeader(true);
@@ -53,9 +54,9 @@ const Start = ({next})=> {
             </section>
             <section className='start__section--container'>
                 <p className='thoughts__header--style'>What are your thoughts</p>
-                <textarea onFocus={() => hideSection()} onBlur={() => showSection()} className='thoughts__textarea--style' id="thoughts" rows="12" />
+                <textarea onChange={(e)=> setUserThoughts(e.target.value)} onFocus={() => hideSection()} onBlur={() => showSection()} className='thoughts__textarea--style' id="thoughts" rows="12" />
                 <div className='thoughts__button--container'>
-                    <button onClick={() => next("thankyou") } className='thoughts__button--style'>NEXT</button>
+                    <button disabled={userThoughts===""?true:false} onClick={() => next("thankyou") } className='thoughts__button--style'>NEXT</button>
                 </div>
             </section>
         </main>
