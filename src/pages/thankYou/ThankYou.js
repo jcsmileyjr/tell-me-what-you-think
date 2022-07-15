@@ -1,6 +1,6 @@
 import './thankYou.css';
 
-const ThankYou = () => {
+const ThankYou = ({next}) => {
     return(
         <main className='thankyou__main--container'>
             <h1 className='thankYou__header--style'>You earn $1 for sharing your thoughts</h1>
@@ -13,7 +13,7 @@ const ThankYou = () => {
 
             <p className='thankYou__instructions--style'>Click the button below to send an email to be paid.</p>
             <div className='thoughts__button--container'>
-                <button className='thoughts__button--style'>FINISH</button>
+                <button  onClick={() => next("start")} className='thoughts__button--style'>FINISH</button>
             </div>
         </main>
     );

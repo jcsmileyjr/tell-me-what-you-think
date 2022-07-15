@@ -16,7 +16,7 @@ function App() {
           <Start next={redirectUser} />
         }
         {currentPage === "thankyou" &&
-          <ThankYou />
+          <ThankYou next={redirectUser} />
         }
       </div>
     </div>
