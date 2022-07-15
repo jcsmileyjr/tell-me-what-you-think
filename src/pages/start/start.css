@@ -83,6 +83,11 @@
     border: none;
 }
 
+.thoughts__button--style:hover {
+  background-color: var(--Primary-Medium-Orange);
+  color: var(--Primary-Black);
+}
+
 .thoughts__button--style, .thoughts__textarea--style, .conversation__content--style, .start__display--container {
     border-radius: 10px;
 }
