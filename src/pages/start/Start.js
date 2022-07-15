@@ -1,10 +1,25 @@
 import './start.css';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
-const Start = ({next})=> {
+const Start = ({next, userStories})=> {
     const [scaleHeader, setScaleHeader] = useState(false);
     const [hideHeader, setHideHeader] = useState(false);
     const [userThoughts, setUserThoughts] = useState("");
+    const [story, setStory] = useState("");
+
+    useEffect(() => {
+        getCurrentStory();
+      }, []);
+
+    const getCurrentStory = ()=> {
+        if(localStorage.getItem('currentStory')){
+            const storyNumber = JSON.parse(localStorage.getItem('currentStory'));
+            setStory(userStories[storyNumber]);
+        }else{
+            localStorage.setItem('currentStory', JSON.stringify(0));
+            setStory(userStories[0]);
+        }
+    }
 
     const hideSection = () => {
         setScaleHeader(true);
@@ -33,24 +48,7 @@ const Start = ({next})=> {
             <section className='start__section--container'>
                 <p className='conversation__header--style'>Today's Conversation</p>
                 <h1 className='conversation__title--style'>Serenity Prayer</h1>
-                <p className='conversation__content--style'>God, give us grace to accept with serenity<br></br>
-                the things that cannot be changed,<br></br>
-                Courage to change the things
-                which should be changed,<br></br>
-                and the Wisdom to distinguish
-                the one from the other.<br></br>
-
-                Living one day at a time,<br></br>
-                Enjoying one moment at a time,<br></br>
-                Accepting hardship as a pathway to peace,<br></br>
-                Taking, as Jesus did,<br></br>
-                This sinful world as it is,<br></br>
-                Not as I would have it,<br></br>
-                Trusting that You will make all things right,<br></br>
-                If I surrender to Your will,<br></br>
-                So that I may be reasonably happy in this life,<br></br>
-                And supremely happy with You forever in the next.
-                </p>
+                <p className='conversation__content--style'>{story.story}</p>
             </section>
             <section className='start__section--container'>
                 <p className='thoughts__header--style'>What are your thoughts</p>
