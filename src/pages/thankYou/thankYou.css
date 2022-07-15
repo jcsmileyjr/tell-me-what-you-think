@@ -19,6 +19,7 @@
 .thankYou__content--style {
     margin-bottom: 50px;
     background-color: var(--Primary-Stone-White);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 @media only screen and (min-width:500px){
