@@ -1,7 +1,7 @@
 import "./App.css";
 import Start from "./pages/start/Start";
 import ThankYou from "./pages/thankYou/ThankYou";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const content = [
   {
@@ -16,8 +16,26 @@ const content = [
   { story: "I am a walking baby", read: false, price: 1, paid: false },
 ];
 function App() {
-  const [currentPage, setCurrentPage] = useState("start");
+  const [currentPage, setCurrentPage] = useState("");
   const [stories, setStories] = useState(content);
+  const [currentStory, setCurrentStory] = useState("");
+
+  useEffect(() => {
+    getCurrentStory();
+    setCurrentPage("start")
+  }, []);
+
+  const getCurrentStory = ()=> {
+      if(localStorage.getItem('currentStory')){
+          const storyNumber = JSON.parse(localStorage.getItem('currentStory'));
+          const lines = stories[storyNumber].story.split(".");
+          setCurrentStory(lines);
+      }else{
+          localStorage.setItem('currentStory', JSON.stringify(0));
+          const lines = stories[0].story.split(".");
+          setCurrentStory(lines);
+      }
+  }  
 
   const redirectUser = (page) => {
     setCurrentPage(page);
@@ -26,7 +44,7 @@ function App() {
     <div className="container">
       <div className="rain">
         {currentPage === "start" && (
-          <Start userStories={stories} next={redirectUser} />
+          <Start userStories={currentStory} next={redirectUser} />
         )}
         {currentPage === "thankyou" && <ThankYou next={redirectUser} />}
       </div>

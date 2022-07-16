@@ -1,24 +1,21 @@
 import './start.css';
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 
 const Start = ({next, userStories})=> {
     const [scaleHeader, setScaleHeader] = useState(false);
     const [hideHeader, setHideHeader] = useState(false);
     const [userThoughts, setUserThoughts] = useState("");
-    const [story, setStory] = useState("");
 
-    useEffect(() => {
-        getCurrentStory();
-      }, []);
-
-    const getCurrentStory = ()=> {
-        if(localStorage.getItem('currentStory')){
-            const storyNumber = JSON.parse(localStorage.getItem('currentStory'));
-            setStory(userStories[storyNumber]);
-        }else{
-            localStorage.setItem('currentStory', JSON.stringify(0));
-            setStory(userStories[0]);
-        }
+    const displayStory = () => {
+        const article = userStories.map((line, index) => {
+            return(
+                <React.Fragment key={index}>
+                    {line}
+                    {userStories.length - 1 === index?"":<br/>}
+                </React.Fragment>
+            )
+        })
+        return article
     }
 
     const hideSection = () => {
@@ -48,7 +45,10 @@ const Start = ({next, userStories})=> {
             <section className='start__section--container'>
                 <p className='conversation__header--style'>Today's Conversation</p>
                 <h1 className='conversation__title--style'>Serenity Prayer</h1>
-                <p className='conversation__content--style'>{story.story}</p>
+                <p className='conversation__content--style'>
+                    {displayStory()}         
+                </p>
+
             </section>
             <section className='start__section--container'>
                 <p className='thoughts__header--style'>What are your thoughts</p>
