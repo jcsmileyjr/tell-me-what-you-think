@@ -10,7 +10,7 @@ const Start = ({next, userStories})=> {
         const article = userStories.map((line, index) => {
             return(
                 <React.Fragment key={index}>
-                    {line}
+                    {line}.
                     {userStories.length - 1 === index?"":<br/>}
                 </React.Fragment>
             )
