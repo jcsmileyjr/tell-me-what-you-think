@@ -10,15 +10,22 @@ const content = [
     price: 1,
     paid: false,
   },
-  { story: "I am a walking baby", read: false, price: 1, paid: false },
-  { story: "I am a walking baby", read: false, price: 1, paid: false },
-  { story: "I am a walking baby", read: false, price: 1, paid: false },
-  { story: "I am a walking baby", read: false, price: 1, paid: false },
+  // { story: "I am a walking baby", read: false, price: 1, paid: false },
+  // { story: "I am a walking baby", read: false, price: 1, paid: false },
+  // { story: "I am a walking baby", read: false, price: 1, paid: false },
+  // { story: "I am a walking baby", read: false, price: 1, paid: false },
 ];
+
+const outOfStories = {
+  story:"No more stories, Wait till next week to make more money. Great job!!!",
+  read: false,
+  price:0,
+  paid: true
+}
 function App() {
   const [currentPage, setCurrentPage] = useState("");
   const [stories, setStories] = useState(content);
-  const [currentStory, setCurrentStory] = useState("");
+  const [currentStory, setCurrentStory] = useState([]);
 
   useEffect(() => {
     getCurrentStory();
@@ -28,8 +35,13 @@ function App() {
   const getCurrentStory = ()=> {
       if(localStorage.getItem('currentStory')){
           const storyNumber = JSON.parse(localStorage.getItem('currentStory'));
-          const lines = stories[storyNumber].story.split(".");
-          setCurrentStory(lines);
+          if(storyNumber === stories.length){
+            const lines = outOfStories.story.split(".");
+            setCurrentStory(lines);
+          }else{
+            const lines = stories[storyNumber].story.split(".");
+            setCurrentStory(lines);
+          }
       }else{
           localStorage.setItem('currentStory', JSON.stringify(0));
           const lines = stories[0].story.split(".");

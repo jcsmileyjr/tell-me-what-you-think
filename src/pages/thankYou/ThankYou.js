@@ -1,6 +1,10 @@
 import './thankYou.css';
 
 const ThankYou = ({next}) => {
+    const updateAppData = () => {
+        let storyNumber = JSON.parse(localStorage.getItem('currentStory'));
+        localStorage.setItem('currentStory', JSON.stringify(storyNumber + 1));
+    }
     return(
         <main className='thankyou__main--container'>
             <h1 className='thankYou__header--style'>You earn $1 for sharing your thoughts</h1>
@@ -13,7 +17,7 @@ const ThankYou = ({next}) => {
 
             <p className='thankYou__instructions--style'>Click the button below to send an email to be paid.</p>
             <div className='thoughts__button--container'>
-                <button  onClick={() => next("start")} className='thoughts__button--style'>FINISH</button>
+                <button  onClick={() => {next("start"); updateAppData();}} className='thoughts__button--style'>FINISH</button>
             </div>
         </main>
     );
