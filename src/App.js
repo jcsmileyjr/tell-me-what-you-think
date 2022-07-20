@@ -10,10 +10,10 @@ const content = [
     price: 1,
     paid: false,
   },
-  // { story: "I am a walking baby", read: false, price: 1, paid: false },
-  // { story: "I am a walking baby", read: false, price: 1, paid: false },
-  // { story: "I am a walking baby", read: false, price: 1, paid: false },
-  // { story: "I am a walking baby", read: false, price: 1, paid: false },
+  { story: "I am a walking baby", read: false, price: 1, paid: false },
+  { story: "I am a walking baby", read: false, price: 1.50, paid: false },
+  { story: "I am a walking baby", read: false, price: 2, paid: false },
+  { story: "I am a walking baby", read: false, price: 2, paid: false },
 ];
 
 const outOfStories = {
@@ -27,11 +27,22 @@ function App() {
   const [stories, setStories] = useState(content);
   const [currentStory, setCurrentStory] = useState([]);
   const [storiesRead, setStoriesRead] = useState(0);
+  const [amountEarned, setAmountEarned] = useState(0);
 
   useEffect(() => {
     getCurrentStory();
     setCurrentPage("start")
   }, []);
+
+  const calculateMoneyEarned = () => {
+    let totalAmount = 0;
+    content.forEach(article => {
+      if(article.read && article.paid === false){
+        totalAmount += article.price;
+      }
+    });
+    setAmountEarned(totalAmount);
+  }
 
   const getCurrentStory = ()=> {
       if(localStorage.getItem('currentStory')){
@@ -44,6 +55,7 @@ function App() {
             const lines = stories[storyNumber].story.split(".");
             setCurrentStory(lines);
           }
+          calculateMoneyEarned();
       }else{
           localStorage.setItem('currentStory', JSON.stringify(0));
           const lines = stories[0].story.split(".");
@@ -58,7 +70,7 @@ function App() {
     <div className="container">
       <div className="rain">
         {currentPage === "start" && (
-          <Start userStories={currentStory} next={redirectUser} numberOfStoriesRead = {storiesRead} />
+          <Start userStories={currentStory} next={redirectUser} numberOfStoriesRead = {storiesRead} totalEarned = {amountEarned} />
         )}
         {currentPage === "thankyou" && <ThankYou next={redirectUser} />}
       </div>

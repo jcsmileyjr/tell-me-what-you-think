@@ -1,7 +1,7 @@
 import './start.css';
 import React, {useState} from 'react';
 
-const Start = ({next, userStories, numberOfStoriesRead})=> {
+const Start = ({next, userStories, numberOfStoriesRead, totalEarned})=> {
     const [scaleHeader, setScaleHeader] = useState(false);
     const [hideHeader, setHideHeader] = useState(false);
     const [userThoughts, setUserThoughts] = useState("");
@@ -37,7 +37,7 @@ const Start = ({next, userStories, numberOfStoriesRead})=> {
                     </div>
                     <div className='start__header--container'>
                         <p className='header__title--style'>Money Earned</p>
-                        <p className='header__content--style'>$7</p>
+                        <p className='header__content--style'>${totalEarned}</p>
                     </div>
                 </div>
                 <p className='header__text--style'>Get paid for reading and sharing your honest intelligent thoughts.</p>
