@@ -1,7 +1,7 @@
 import './start.css';
 import React, {useState} from 'react';
 
-const Start = ({next, userStories, numberOfStoriesRead, totalEarned})=> {
+const Start = ({next, userStories, numberOfStoriesRead, totalEarned, storyTitle})=> {
     const [scaleHeader, setScaleHeader] = useState(false);
     const [hideHeader, setHideHeader] = useState(false);
     const [userThoughts, setUserThoughts] = useState("");
@@ -44,7 +44,7 @@ const Start = ({next, userStories, numberOfStoriesRead, totalEarned})=> {
             </section>
             <section className='start__section--container'>
                 <p className='conversation__header--style'>Today's Conversation</p>
-                <h1 className='conversation__title--style'>Serenity Prayer</h1>
+                <h1 className='conversation__title--style'>{storyTitle}</h1>
                 <p className='conversation__content--style'>
                     {displayStory()}         
                 </p>
