@@ -1,7 +1,7 @@
 import './start.css';
 import React, {useState} from 'react';
 
-const Start = ({next, userStories})=> {
+const Start = ({next, userStories, numberOfStoriesRead})=> {
     const [scaleHeader, setScaleHeader] = useState(false);
     const [hideHeader, setHideHeader] = useState(false);
     const [userThoughts, setUserThoughts] = useState("");
@@ -33,7 +33,7 @@ const Start = ({next, userStories})=> {
                 <div className='start__display--container'>
                     <div className='start__header--container'>
                         <p className='header__title--style'>Articles Read</p>
-                        <p className='header__content--style'>4</p>
+                        <p className='header__content--style'>{numberOfStoriesRead}</p>
                     </div>
                     <div className='start__header--container'>
                         <p className='header__title--style'>Money Earned</p>

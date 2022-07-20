@@ -26,6 +26,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState("");
   const [stories, setStories] = useState(content);
   const [currentStory, setCurrentStory] = useState([]);
+  const [storiesRead, setStoriesRead] = useState(0);
 
   useEffect(() => {
     getCurrentStory();
@@ -35,6 +36,7 @@ function App() {
   const getCurrentStory = ()=> {
       if(localStorage.getItem('currentStory')){
           const storyNumber = JSON.parse(localStorage.getItem('currentStory'));
+          setStoriesRead(storyNumber);
           if(storyNumber === stories.length){
             const lines = outOfStories.story.split(".");
             setCurrentStory(lines);
@@ -56,7 +58,7 @@ function App() {
     <div className="container">
       <div className="rain">
         {currentPage === "start" && (
-          <Start userStories={currentStory} next={redirectUser} />
+          <Start userStories={currentStory} next={redirectUser} numberOfStoriesRead = {storiesRead} />
         )}
         {currentPage === "thankyou" && <ThankYou next={redirectUser} />}
       </div>
