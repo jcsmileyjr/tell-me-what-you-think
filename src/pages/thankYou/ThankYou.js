@@ -1,9 +1,10 @@
 import './thankYou.css';
 
-const ThankYou = ({next}) => {
+const ThankYou = ({next, done}) => {
     const updateAppData = () => {
         let storyNumber = JSON.parse(localStorage.getItem('currentStory'));
         localStorage.setItem('currentStory', JSON.stringify(storyNumber + 1));
+        done();
     }
     return(
         <main className='thankyou__main--container'>

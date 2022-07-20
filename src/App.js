@@ -34,9 +34,22 @@ function App() {
     setCurrentPage("start")
   }, []);
 
+  useEffect(() => {
+    calculateMoneyEarned();
+  });
+
+  const finishArticle = () => {
+    let allStories = stories;
+    allStories[storiesRead].read = true;
+    setStories(allStories)
+    setStoriesRead(prevNumber => prevNumber + 1);
+    //console.log("finishedArticle",stories);
+  }
+
   const calculateMoneyEarned = () => {
+    //console.log("calculate, show stories", stories)
     let totalAmount = 0;
-    content.forEach(article => {
+      stories.forEach(article => {
       if(article.read && article.paid === false){
         totalAmount += article.price;
       }
@@ -55,7 +68,7 @@ function App() {
             const lines = stories[storyNumber].story.split(".");
             setCurrentStory(lines);
           }
-          calculateMoneyEarned();
+          //calculateMoneyEarned();
       }else{
           localStorage.setItem('currentStory', JSON.stringify(0));
           const lines = stories[0].story.split(".");
@@ -72,7 +85,7 @@ function App() {
         {currentPage === "start" && (
           <Start userStories={currentStory} next={redirectUser} numberOfStoriesRead = {storiesRead} totalEarned = {amountEarned} />
         )}
-        {currentPage === "thankyou" && <ThankYou next={redirectUser} />}
+        {currentPage === "thankyou" && <ThankYou next={redirectUser} done ={finishArticle} />}
       </div>
     </div>
   );
