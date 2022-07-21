@@ -8,7 +8,7 @@ const ThankYou = ({next, done}) => {
     }
     return(
         <main className='thankyou__main--container'>
-            <h1 className='thankYou__header--style'>You earn $1 for sharing your thoughts</h1>
+            <h1 className='thankYou__header--style'>You earned $1 for sharing your thoughts</h1>
             <h3 className='thankYou__title--style'>My takeaways on the article</h3>
             <ul className='thankYou__content--style'>
                 <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
