@@ -54,7 +54,7 @@
 .conversation__content--style {
     background-color: var(--Primary-Stone-White);
     padding:10px;
-    font-size: small;
+    font-size: medium;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
