@@ -5,27 +5,47 @@ const Start = ({next, userStories, numberOfStoriesRead, totalEarned, storyTitle}
     const [scaleHeader, setScaleHeader] = useState(false);
     const [hideHeader, setHideHeader] = useState(false);
     const [userThoughts, setUserThoughts] = useState("");
+    const [nextParagragh, setNextParagraph] = useState(0);
+    const [storyBook, setStoryBook] = useState([]);
+
+    React.useEffect(() => {
+        breakUpStory();
+    }, []);
+
+    // Notes on how to do this function at: https://domhabersack.com/chunking-arrays
+    const breakUpStory = () => {
+        let article = userStories;
+        const numberOfChunks = Math.ceil(article.length / 4)
+        let book = [...Array(numberOfChunks)].map((arr, index) => {   
+                return article.slice(index * 4, (index + 1) * 4);
+        })
+        setStoryBook(book);
+    }
 
     const displayStory = () => {
-        const article = userStories.map((line, index) => {
-            let determineParagragh = (index) % 6;
-            if(determineParagragh !== 0 || index === 0 || index === (userStories.length -1)){
+        console.log(storyBook)
+        let book = ["Waiting"]
+        if(storyBook.length !== 0){
+            book = storyBook[nextParagragh];
+        }
+        const article = book.map((line, index) => {
+            if(index !== book.length - 1){
                 return(
                     <React.Fragment key={index}>
                         {line}.
                         {userStories.length - 1 === index?"":<br/>}
                     </React.Fragment>
                 )
-            }else {
+            }else{
                 return(
-                    <div className='bullet--container' key={index}>
-                        <div className='bullet'></div>
-                        <div className='bullet'></div>
-                        <div className='bullet'></div>
-                        <div className='bullet'></div>
-                        <div className='bullet'></div>
+                    <div key={index}>
+                        {line}.
+                        {userStories.length - 1 === index?"":<br/>}
+                        <div className='conversation__nextPage--container'>
+                            <button className='conversation__nextPage--style'>Next Page</button>
+                        </div>
                     </div>
-                );
+                )
             }
         })
         return article

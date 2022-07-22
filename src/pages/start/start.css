@@ -59,17 +59,20 @@
     line-height: 1.6;
 }
 
-.bullet--container {
+.conversation__nextPage--container {
   display: flex;
-  justify-content: space-around;
-  margin:10px 0;
+  justify-content: center;
+  align-self: center;
+  margin-top: 10px;
 }
 
-.bullet {
-  height: 10px;
-  width: 10px;
-  background-color: var(--Primary-Medium-Orange);
-  border-radius: 50%;
+.conversation__nextPage--style {
+  background-color: green;
+  border: none;
+  color:var(--Primary-Stone-White);
+  border-radius: 4px;
+  padding: 10px 15px;
+  font-weight: bold;
 }
 
 /*Thoughts section*/
