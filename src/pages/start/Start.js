@@ -8,12 +8,25 @@ const Start = ({next, userStories, numberOfStoriesRead, totalEarned, storyTitle}
 
     const displayStory = () => {
         const article = userStories.map((line, index) => {
-            return(
-                <React.Fragment key={index}>
-                    {line}.
-                    {userStories.length - 1 === index?"":<br/>}
-                </React.Fragment>
-            )
+            let determineParagragh = (index) % 6;
+            if(determineParagragh !== 0 || index === 0 || index === (userStories.length -1)){
+                return(
+                    <React.Fragment key={index}>
+                        {line}.
+                        {userStories.length - 1 === index?"":<br/>}
+                    </React.Fragment>
+                )
+            }else {
+                return(
+                    <div className='bullet--container' key={index}>
+                        <div className='bullet'></div>
+                        <div className='bullet'></div>
+                        <div className='bullet'></div>
+                        <div className='bullet'></div>
+                        <div className='bullet'></div>
+                    </div>
+                );
+            }
         })
         return article
     }

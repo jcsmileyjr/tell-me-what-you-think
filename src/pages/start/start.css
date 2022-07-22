@@ -56,6 +56,20 @@
     padding:10px;
     font-size: medium;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+.bullet--container {
+  display: flex;
+  justify-content: space-around;
+  margin:5px 0;
+}
+
+.bullet {
+  height: 10px;
+  width: 10px;
+  background-color: #bbb;
+  border-radius: 50%;
 }
 
 /*Thoughts section*/
