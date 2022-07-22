@@ -68,7 +68,7 @@
 .bullet {
   height: 10px;
   width: 10px;
-  background-color: #bbb;
+  background-color: var(--Primary-Medium-Orange);
   border-radius: 50%;
 }
 
