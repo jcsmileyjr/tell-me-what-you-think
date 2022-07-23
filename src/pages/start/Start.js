@@ -85,9 +85,9 @@ const Start = ({next, userStories, numberOfStoriesRead, totalEarned, storyTitle}
             <section className='start__section--container'>
                 <p className='conversation__header--style'>Today's Conversation</p>
                 <h1 className='conversation__title--style'>{storyTitle}</h1>
-                <p className='conversation__content--style'>
+                <div className='conversation__content--style'>
                     {displayStory()}         
-                </p>
+                </div>
 
             </section>
             <section className='start__section--container'>
