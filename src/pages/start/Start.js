@@ -44,7 +44,9 @@ const Start = ({next, userStories, numberOfStoriesRead, totalEarned, storyTitle}
                         {userStories.length - 1 === index?"":<br/>}
                         {nextParagragh === numberOfPages -1 &&
                             <div className='conversation__endOfArticle--container'>
+                                <hr class="style-seven" />
                                 <p className='conversation__endOfArticle--style'>📑End of Article📑</p>
+                                <hr class="style-seven" />
                             </div>
                         }
                         <div className='conversation__nextPage--container'>

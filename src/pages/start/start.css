@@ -79,12 +79,14 @@
 .conversation__endOfArticle--container {
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
 .conversation__endOfArticle--style {
-  margin-top: 0;
+  margin:0;
   font-weight: bold;
-  color: var(--Primary-Black)
+  color: var(--Primary-Black);
+  text-align: center;
 }
 
 /*Thoughts section*/
@@ -220,4 +222,11 @@
       opacity: 1;
     }
   }
-  
+
+/* dashed border <hr> tag */
+
+hr.style-seven {
+  height:8px;
+  border: 2px dashed var(--Accent-Dark-Orange);
+  width: 100%;
+  }
