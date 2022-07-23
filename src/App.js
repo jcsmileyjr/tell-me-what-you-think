@@ -77,7 +77,6 @@ function App() {
             setCurrentStory(lines);
             setCurrentTitle(outOfStories.title);
           }else{
-            console.log("display current story number", storyNumber)
             const lines = stories[storyNumber].story.split(".");
             setCurrentStory(lines);
             setCurrentTitle(stories[storyNumber].title);
@@ -92,7 +91,7 @@ function App() {
   const redirectUser = (page) => {
     setCurrentPage(page);
   };
-  
+
   let storyPrice = stories[storiesRead].price;
   return (
     <div className="container">

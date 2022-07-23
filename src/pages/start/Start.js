@@ -23,11 +23,13 @@ const Start = ({next, userStories, numberOfStoriesRead, totalEarned, storyTitle}
     }
 
     const displayStory = () => {
-        console.log(storyBook)
         let book = ["Waiting"]
+        //console.log("story", storyBook)
         if(storyBook.length !== 0){
             book = storyBook[nextParagragh];
         }
+        console.log("nextParagraph",nextParagragh)
+        //console.log("book", book)
         const article = book.map((line, index) => {
             if(index !== book.length - 1){
                 return(
@@ -42,13 +44,21 @@ const Start = ({next, userStories, numberOfStoriesRead, totalEarned, storyTitle}
                         {line}.
                         {userStories.length - 1 === index?"":<br/>}
                         <div className='conversation__nextPage--container'>
-                            <button className='conversation__nextPage--style'>Next Page</button>
+                            <button onClick={()=> getNextParagraph()} className='conversation__nextPage--style'>Next Page</button>
                         </div>
                     </div>
                 )
             }
         })
         return article
+    }
+
+    const getNextParagraph = () => {
+        if(nextParagragh >= (storyBook.length - 1)){
+            setNextParagraph(0);
+        }else{
+            setNextParagraph(prevNumber => prevNumber + 1);
+        }
     }
 
     const hideSection = () => {
