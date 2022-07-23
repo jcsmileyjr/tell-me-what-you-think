@@ -7,6 +7,7 @@ const Start = ({next, userStories, numberOfStoriesRead, totalEarned, storyTitle}
     const [userThoughts, setUserThoughts] = useState("");
     const [nextParagragh, setNextParagraph] = useState(0);
     const [storyBook, setStoryBook] = useState([]);
+    const [numberOfPages, setNumberOfPages] = useState(0);
 
     React.useEffect(() => {
         breakUpStory();
@@ -19,6 +20,7 @@ const Start = ({next, userStories, numberOfStoriesRead, totalEarned, storyTitle}
         let book = [...Array(numberOfChunks)].map((arr, index) => {   
                 return article.slice(index * 4, (index + 1) * 4);
         })
+        setNumberOfPages(book.length);
         setStoryBook(book);
     }
 
@@ -38,8 +40,13 @@ const Start = ({next, userStories, numberOfStoriesRead, totalEarned, storyTitle}
             }else{
                 return(
                     <div key={index}>
-                        {line}.
+                        {line}
                         {userStories.length - 1 === index?"":<br/>}
+                        {nextParagragh === numberOfPages -1 &&
+                            <div className='conversation__endOfArticle--container'>
+                                <p className='conversation__endOfArticle--style'>📑End of Article📑</p>
+                            </div>
+                        }
                         <div className='conversation__nextPage--container'>
                             <button onClick={()=> getNextParagraph()} className='conversation__nextPage--style'>Read More</button>
                         </div>

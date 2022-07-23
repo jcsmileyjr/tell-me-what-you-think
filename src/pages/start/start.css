@@ -76,6 +76,17 @@
   font-size: larger;
 }
 
+.conversation__endOfArticle--container {
+  display: flex;
+  justify-content: center;
+}
+
+.conversation__endOfArticle--style {
+  margin-top: 0;
+  font-weight: bold;
+  color: var(--Primary-Black)
+}
+
 /*Thoughts section*/
 .thoughts__header--style {
     text-align: center;
