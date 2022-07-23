@@ -23,13 +23,10 @@ const Start = ({next, userStories, numberOfStoriesRead, totalEarned, storyTitle}
     }
 
     const displayStory = () => {
-        let book = ["Waiting"]
-        //console.log("story", storyBook)
+        let book = ["Waiting"];
         if(storyBook.length !== 0){
             book = storyBook[nextParagragh];
         }
-        console.log("nextParagraph",nextParagragh)
-        //console.log("book", book)
         const article = book.map((line, index) => {
             if(index !== book.length - 1){
                 return(
