@@ -54,22 +54,37 @@
 .conversation__content--style {
     background-color: var(--Primary-Stone-White);
     padding:10px;
-    font-size: medium;
+    font-size: large;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     line-height: 1.6;
 }
 
-.bullet--container {
+.conversation__nextPage--container {
   display: flex;
-  justify-content: space-around;
-  margin:10px 0;
+  justify-content: center;
+  align-self: center;
+  margin-top: 10px;
 }
 
-.bullet {
-  height: 10px;
-  width: 10px;
-  background-color: var(--Primary-Medium-Orange);
-  border-radius: 50%;
+.conversation__nextPage--style {
+  background-color: green;
+  border: none;
+  color:var(--Primary-Stone-White);
+  border-radius: 10px;
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.conversation__endOfArticle--container {
+  display: flex;
+  justify-content: center;
+}
+
+.conversation__endOfArticle--style {
+  margin-top: 0;
+  font-weight: bold;
+  color: var(--Primary-Black)
 }
 
 /*Thoughts section*/
@@ -80,6 +95,7 @@
 .thoughts__textarea--style {
     padding: 10px;
     width: 94%;
+    font-size: large;
 }
 
 .thoughts__button--container {

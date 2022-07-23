@@ -5,30 +5,64 @@ const Start = ({next, userStories, numberOfStoriesRead, totalEarned, storyTitle}
     const [scaleHeader, setScaleHeader] = useState(false);
     const [hideHeader, setHideHeader] = useState(false);
     const [userThoughts, setUserThoughts] = useState("");
+    const [nextParagragh, setNextParagraph] = useState(0);
+    const [storyBook, setStoryBook] = useState([]);
+    const [numberOfPages, setNumberOfPages] = useState(0);
+
+    React.useEffect(() => {
+        breakUpStory();
+    }, []);
+
+    // Notes on how to do this function at: https://domhabersack.com/chunking-arrays
+    const breakUpStory = () => {
+        let article = userStories;
+        const numberOfChunks = Math.ceil(article.length / 4)
+        let book = [...Array(numberOfChunks)].map((arr, index) => {   
+                return article.slice(index * 4, (index + 1) * 4);
+        })
+        setNumberOfPages(book.length);
+        setStoryBook(book);
+    }
 
     const displayStory = () => {
-        const article = userStories.map((line, index) => {
-            let determineParagragh = (index) % 6;
-            if(determineParagragh !== 0 || index === 0 || index === (userStories.length -1)){
+        let book = ["Waiting"];
+        if(storyBook.length !== 0){
+            book = storyBook[nextParagragh];
+        }
+        const article = book.map((line, index) => {
+            if(index !== book.length - 1){
                 return(
                     <React.Fragment key={index}>
                         {line}.
                         {userStories.length - 1 === index?"":<br/>}
                     </React.Fragment>
                 )
-            }else {
+            }else{
                 return(
-                    <div className='bullet--container' key={index}>
-                        <div className='bullet'></div>
-                        <div className='bullet'></div>
-                        <div className='bullet'></div>
-                        <div className='bullet'></div>
-                        <div className='bullet'></div>
+                    <div key={index}>
+                        {line}
+                        {userStories.length - 1 === index?"":<br/>}
+                        {nextParagragh === numberOfPages -1 &&
+                            <div className='conversation__endOfArticle--container'>
+                                <p className='conversation__endOfArticle--style'>📑End of Article📑</p>
+                            </div>
+                        }
+                        <div className='conversation__nextPage--container'>
+                            <button onClick={()=> getNextParagraph()} className='conversation__nextPage--style'>Read More</button>
+                        </div>
                     </div>
-                );
+                )
             }
         })
         return article
+    }
+
+    const getNextParagraph = () => {
+        if(nextParagragh >= (storyBook.length - 1)){
+            setNextParagraph(0);
+        }else{
+            setNextParagraph(prevNumber => prevNumber + 1);
+        }
     }
 
     const hideSection = () => {
@@ -58,9 +92,9 @@ const Start = ({next, userStories, numberOfStoriesRead, totalEarned, storyTitle}
             <section className='start__section--container'>
                 <p className='conversation__header--style'>Today's Conversation</p>
                 <h1 className='conversation__title--style'>{storyTitle}</h1>
-                <p className='conversation__content--style'>
+                <div className='conversation__content--style'>
                     {displayStory()}         
-                </p>
+                </div>
 
             </section>
             <section className='start__section--container'>
