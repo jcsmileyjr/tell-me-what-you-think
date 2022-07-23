@@ -41,7 +41,7 @@ const Start = ({next, userStories, numberOfStoriesRead, totalEarned, storyTitle}
                         {line}.
                         {userStories.length - 1 === index?"":<br/>}
                         <div className='conversation__nextPage--container'>
-                            <button onClick={()=> getNextParagraph()} className='conversation__nextPage--style'>Next Page</button>
+                            <button onClick={()=> getNextParagraph()} className='conversation__nextPage--style'>Read More</button>
                         </div>
                     </div>
                 )
