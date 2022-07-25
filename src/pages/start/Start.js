@@ -11,7 +11,7 @@ const Start = ({next, userStories, numberOfStoriesRead, totalEarned, storyTitle}
 
     React.useEffect(() => {
         breakUpStory();
-    }, []);
+    }, [userStories]);
 
     // Notes on how to do this function at: https://domhabersack.com/chunking-arrays
     const breakUpStory = () => {
