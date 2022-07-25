@@ -55,6 +55,8 @@ function App() {
     setStories(allStories)
     getNextArticle();
     calculateMoneyEarnedBeforePay();
+    // TODO: API call to save updated stories to database
+    localStorage.setItem('TellMeWhatYouThink-Content', JSON.stringify(allStories));
   }
   
   const calculateMoneyEarnedBeforePay = () => {
@@ -80,8 +82,13 @@ function App() {
     fetch("/api/content")
       .then((response) => response.json())
       .then((json) => {
-        setStories(json);
-        const data = json;
+        let data = json;
+        const previousSavedStories = JSON.parse(localStorage.getItem('TellMeWhatYouThink-Content'));
+        if(previousSavedStories.length >= data.length){
+          data = previousSavedStories;
+          console.log("saved data overwritten newly loaded data")
+        }
+        setStories(data);
         if(localStorage.getItem('currentStory')){
             const storyNumber = JSON.parse(localStorage.getItem('currentStory'));
             setStoriesRead(storyNumber);
@@ -95,6 +102,8 @@ function App() {
               setCurrentTitle(data[storyNumber].title);
               setCurrentTakeaway(data[storyNumber].takeaway);
             }
+
+            calculateMoneyEarnedBeforePay()
         }else{
             localStorage.setItem('currentStory', JSON.stringify(0));
             const lines = data[0].story.split(".");
