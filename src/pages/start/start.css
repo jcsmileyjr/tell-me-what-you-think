@@ -21,7 +21,7 @@
 }
 
 .header__title--style {
-    color: var(--Accent-Dark-Orange);
+    color: var(--Accent-Darkest-Orange);
     text-decoration: underline;
     margin-bottom:0;
 }
