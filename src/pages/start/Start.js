@@ -100,8 +100,9 @@ const Start = ({next, userStories, numberOfStoriesRead, totalEarned, storyTitle}
 
             </section>
             <section className='start__section--container'>
-                <p className='thoughts__header--style'>What are your thoughts</p>
-                <textarea onChange={(e)=> setUserThoughts(e.target.value)} onFocus={() => hideSection()} onBlur={() => showSection()} className='thoughts__textarea--style' id="thoughts" rows="12" />
+                <label className='thoughts__header--style'>What are your thoughts
+                    <textarea onChange={(e)=> setUserThoughts(e.target.value)} onFocus={() => hideSection()} onBlur={() => showSection()} className='thoughts__textarea--style' id="thoughts" rows="12" />
+                </label>
                 <div className='thoughts__button--container'>
                     <button disabled={userThoughts===""?true:false} onClick={() => next("thankyou") } className='thoughts__button--style'>NEXT</button>
                 </div>
