@@ -84,7 +84,7 @@ function App() {
       .then((json) => {
         let data = json;
         const previousSavedStories = JSON.parse(localStorage.getItem('TellMeWhatYouThink-Content'));
-        if(previousSavedStories.length >= data.length){
+        if(previousSavedStories !== null && previousSavedStories.length >= data.length){
           data = previousSavedStories;
           console.log("saved data overwritten newly loaded data")
         }
