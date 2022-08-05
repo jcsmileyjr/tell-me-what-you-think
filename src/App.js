@@ -36,7 +36,7 @@ function App() {
   const [currentStory, setCurrentStory] = useState([]);
   const [storiesRead, setStoriesRead] = useState(0);
   const [amountEarned, setAmountEarned] = useState(0);
-  const [currentTitle, setCurrentTitle] = useState("");
+  const [currentTitle, setCurrentTitle] = useState("Thinking");
   const [currentTakeaway, setCurrentTakeaway] = useState("");
 
   useEffect(() => {
