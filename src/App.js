@@ -3,6 +3,8 @@ import Start from "./pages/start/Start";
 import ThankYou from "./pages/thankYou/ThankYou";
 import React, { useState, useEffect } from "react";
 import { createServer } from "miragejs";
+//import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
 
 createServer({
   routes() {
@@ -71,6 +73,7 @@ function App() {
   const [amountEarned, setAmountEarned] = useState(0);
   const [currentTitle, setCurrentTitle] = useState("Thinking");
   const [currentTakeaway, setCurrentTakeaway] = useState("");
+  const [userThoughts, setUserThoughts] = useState("");
 
   useEffect(() => {
     setupApp();
@@ -80,6 +83,20 @@ function App() {
   useEffect(() => {
     calculateMoneyEarnedBeforePay();
   });
+
+  const emailMessage = () => {
+    console.log(userThoughts);
+    var templateParams = {
+      name:'Ameerah Salha',
+      message: `${userThoughts}`
+    };
+    emailjs.send(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, templateParams, process.env.REACT_APP_USER_ID)
+    .then(function(response) {
+      console.log('SUCCESS!', response.status, response.text);
+   }, function(error) {
+      console.log('FAILED...', error);
+   });
+  }
 
   const finishArticle = () => {
     let allStories = stories;
@@ -92,6 +109,7 @@ function App() {
       "TellMeWhatYouThink-Content",
       JSON.stringify(allStories)
     );
+    emailMessage();
   };
 
   const calculateMoneyEarnedBeforePay = () => {
@@ -175,6 +193,8 @@ function App() {
             next={redirectUser}
             numberOfStoriesRead={storiesRead}
             totalEarned={amountEarned}
+            getUserThoughts={setUserThoughts}
+            currentUserThoughts = {userThoughts}            
           />
         )}
         {currentPage === "thankyou" && (

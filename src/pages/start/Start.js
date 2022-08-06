@@ -1,10 +1,10 @@
 import './start.css';
 import React, {useState} from 'react';
 
-const Start = ({next, userStories, numberOfStoriesRead, totalEarned, storyTitle})=> {
+const Start = ({next, userStories, numberOfStoriesRead, totalEarned, storyTitle, getUserThoughts, currentUserThoughts})=> {
     const [scaleHeader, setScaleHeader] = useState(false);
     const [hideHeader, setHideHeader] = useState(false);
-    const [userThoughts, setUserThoughts] = useState("");
+    //const [userThoughts, setUserThoughts] = useState("");
     const [nextParagragh, setNextParagraph] = useState(0);
     const [storyBook, setStoryBook] = useState([]);
     const [numberOfPages, setNumberOfPages] = useState(0);
@@ -101,10 +101,10 @@ const Start = ({next, userStories, numberOfStoriesRead, totalEarned, storyTitle}
             </section>
             <section className='start__section--container'>
                 <label className='thoughts__header--style'>What are your thoughts
-                    <textarea onChange={(e)=> setUserThoughts(e.target.value)} onFocus={() => hideSection()} onBlur={() => showSection()} className='thoughts__textarea--style' id="thoughts" rows="12" />
+                    <textarea onChange={(e)=> getUserThoughts(e.target.value)} onFocus={() => hideSection()} onBlur={() => showSection()} className='thoughts__textarea--style' id="thoughts" rows="12" />
                 </label>
                 <div className='thoughts__button--container'>
-                    <button disabled={userThoughts===""?true:false} onClick={() => next("thankyou") } className='thoughts__button--style'>NEXT</button>
+                    <button disabled={currentUserThoughts===""?true:false} onClick={() => next("thankyou") } className='thoughts__button--style'>NEXT</button>
                 </div>
             </section>
         </main>
