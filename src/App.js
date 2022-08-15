@@ -34,7 +34,6 @@ function App() {
   });
 
   const emailMessage = () => {
-    console.log(userThoughts);
     var templateParams = {
       name:'Ameerah Salha',
       message: `${userThoughts}`
@@ -85,7 +84,6 @@ function App() {
     fetch(".netlify/functions/getStories")
       .then((response) => response.json())
       .then((json) => {
-        console.log('netlify data',json);
         let data = json.data;
         const previousSavedStories = JSON.parse(
           localStorage.getItem("TellMeWhatYouThink-Content")
