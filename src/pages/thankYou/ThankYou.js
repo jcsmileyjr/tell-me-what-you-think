@@ -1,4 +1,5 @@
 import './thankYou.css';
+import Swal from 'sweetalert2'
 
 const ThankYou = ({next, done, moneyMade, takeaway}) => {
     const updateAppData = () => {
@@ -19,7 +20,7 @@ const ThankYou = ({next, done, moneyMade, takeaway}) => {
 
             <p className='thankYou__instructions--style'>Click the button below to send an email to be paid.</p>
             <div className='thoughts__button--container'>
-                <button  onClick={() => {next("start"); updateAppData();}} className='thoughts__button--style'>FINISH</button>
+                <button  onClick={() => {next("start"); updateAppData(); Swal.fire(`Let's earn more money! Read another article.`)}} className='thoughts__button--style'>FINISH</button>
             </div>
         </main>
     );
