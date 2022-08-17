@@ -105,7 +105,7 @@ const Start = ({next, userStories, numberOfStoriesRead, totalEarned, storyTitle,
                     <textarea onChange={(e)=> getUserThoughts(e.target.value)} onFocus={() => hideSection()} onBlur={() => showSection()} className='thoughts__textarea--style' id="thoughts" rows="12" />
                 </label>
                 <div className='thoughts__button--container'>
-                    <button disabled={currentUserThoughts===""?true:false} onClick={() => {next("thankyou"); Swal.fire('Thank you for sharing your thoughts!');} } className='thoughts__button--style'>NEXT</button>
+                    <button disabled={currentUserThoughts==="" || storyTitle === "Warning"?true:false} onClick={() => {next("thankyou"); Swal.fire('Thank you for sharing your thoughts!');} } className='thoughts__button--style'>NEXT</button>
                 </div>
             </section>
         </main>

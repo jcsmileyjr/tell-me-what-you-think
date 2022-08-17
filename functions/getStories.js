@@ -46,6 +46,14 @@ const getArticles = () => {
       price: 1,
       paid: false,
     },
+    {
+      title: "Warning",
+      story:
+        "No more stories, Wait till next week to make more money. Great job!!!",
+      read: false,
+      price: 0,
+      paid: true,
+    }
   ]
 
 

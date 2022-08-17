@@ -52,6 +52,7 @@ function App() {
     setStories(allStories);
     getNextArticle();
     calculateMoneyEarnedBeforePay();
+    setUserThoughts("");
     // TODO: API call to save updated stories to database
     localStorage.setItem(
       "TellMeWhatYouThink-Content",
