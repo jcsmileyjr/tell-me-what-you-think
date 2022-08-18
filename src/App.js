@@ -58,7 +58,7 @@ function App() {
       "TellMeWhatYouThink-Content",
       JSON.stringify(allStories)
     );
-    emailMessage();
+    //emailMessage();
   };
 
   const calculateMoneyEarnedBeforePay = () => {
@@ -91,7 +91,7 @@ function App() {
           previousSavedStories !== null &&
           previousSavedStories.length >= data.length
         ) {
-          data = previousSavedStories;
+          data = JSON.parse(previousSavedStories) ;
           console.log("saved data overwritten newly loaded data");
         }
         setStories(data);

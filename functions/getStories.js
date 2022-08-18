@@ -14,8 +14,24 @@ const getArticles = async () => {
     return articles;
   });
 
-  return await onlineData;
+  let updatedData = moveWarningArticleToEndOfArray(onlineData);
+
+  return await updatedData;
 };
+
+const moveWarningArticleToEndOfArray = (articles) => {
+  let foundWarningArticleIndex;
+  articles.forEach((article, index) => {
+    if(article.title === "Warning"){
+      foundWarningArticleIndex = index;
+      return
+    }
+  })
+
+  let warningArticle = articles.splice(foundWarningArticleIndex, 1);
+  articles.push(warningArticle[0]);
+  return articles
+}
 
 
 exports.handler = async function () {
