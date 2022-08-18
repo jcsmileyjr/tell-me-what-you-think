@@ -86,9 +86,7 @@ function App() {
       .then((response) => response.json())
       .then((json) => {
         let data = json.data;
-        const previousSavedStories = JSON.parse(
-          localStorage.getItem("TellMeWhatYouThink-Content")
-        );
+        let previousSavedStories = localStorage.getItem("TellMeWhatYouThink-Content");
         if (
           previousSavedStories !== null &&
           previousSavedStories.length >= data.length
