@@ -64,7 +64,7 @@ function App() {
   const calculateMoneyEarnedBeforePay = () => {
     let totalAmount = 0;
     stories.forEach((article) => {
-      if (article.read && article.paid === false) {
+      if (article.read && (article.paid === false || article.paid === undefined)) {
         totalAmount += article.price;
       }
     });
