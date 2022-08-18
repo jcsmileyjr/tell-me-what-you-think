@@ -58,7 +58,7 @@ function App() {
       "TellMeWhatYouThink-Content",
       JSON.stringify(allStories)
     );
-    //emailMessage();
+    emailMessage();
   };
 
   const calculateMoneyEarnedBeforePay = () => {
