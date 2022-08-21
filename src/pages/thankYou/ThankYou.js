@@ -3,6 +3,7 @@ import Swal from 'sweetalert2'
 
 /**
  * Final page of the app that displays the takeaway of the current story and amount of money earned for reading.
+ * 
  * @param {function} next - Function to redirect the user to the "Start" page.
  * @param {function} done - function to update the current article object, update the articles array in local storage, and etc.
  * @param {number} moneyMade - The amount of money earned from reading this article.
