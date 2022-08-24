@@ -60,7 +60,7 @@ const Start = ({next, userStories, numberOfStoriesRead, totalEarned, storyTitle,
                 )
             }else{
                 return(
-                    <div key={index}>
+                    <React.Fragment key={index}>
                         {line}
                         {userStories.length - 1 === index?"":<br/>}
                         {nextParagragh === numberOfPages -1 &&
@@ -73,7 +73,7 @@ const Start = ({next, userStories, numberOfStoriesRead, totalEarned, storyTitle,
                         <div className='conversation__nextPage--container'>
                             <button onClick={()=> getNextParagraph()} className='conversation__nextPage--style'>Read More</button>
                         </div>
-                    </div>
+                    </React.Fragment>
                 )
             }
         })
