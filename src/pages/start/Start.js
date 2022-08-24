@@ -46,7 +46,7 @@ const Start = ({next, userStories, numberOfStoriesRead, totalEarned, storyTitle,
      * @returns a horizontal UI of sentences
      */
     const displayStory = () => {
-        let book = ["Waiting"];
+        let book = ["Waiting"]; // default text if there is an error
         if(storyBook.length !== 0){
             book = storyBook[nextParagragh];
         }
@@ -55,7 +55,7 @@ const Start = ({next, userStories, numberOfStoriesRead, totalEarned, storyTitle,
                 return(
                     <React.Fragment key={index}>
                         {line}.
-                        {userStories.length - 1 === index?"":<br/>}
+                        {userStories.length - 1 === index?"":<br/>} {/* Line break */}
                     </React.Fragment>
                 )
             }else{
