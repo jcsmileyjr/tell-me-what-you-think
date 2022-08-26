@@ -1,5 +1,5 @@
-import "./thankYou.css";
 import Swal from "sweetalert2";
+import "./thankYou.css";
 
 /**
  * Final page of the app that displays the takeaway of the current story and amount of money earned for reading.

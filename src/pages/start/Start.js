@@ -1,6 +1,6 @@
-import "./start.css";
-import React, { useState } from "react";
 import Swal from "sweetalert2";
+import React, { useState } from "react";
+import "./start.css";
 
 /**
  * Primary page of the app use to display the article to be read and a text area to record the user typed thoughts

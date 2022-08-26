@@ -1,8 +1,8 @@
+import emailjs from "@emailjs/browser";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Start from "./pages/start/Start";
 import ThankYou from "./pages/thankYou/ThankYou";
-import React, { useState, useEffect } from "react";
-import emailjs from "@emailjs/browser";
 
 // Object used as default for articles before the Sanity.io database API call and when the reader hit the last story
 const outOfStories = {
