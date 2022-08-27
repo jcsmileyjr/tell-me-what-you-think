@@ -69,7 +69,7 @@ const Start = ({
       } else {
         return (
           <React.Fragment key={index}>
-            {line}
+            {line}.
             {userStories.length - 1 === index ? "" : <br />}
             {nextParagragh === numberOfPages - 1 && (
               <div className="conversation__endOfArticle--container">
@@ -80,22 +80,6 @@ const Start = ({
                 <hr className="style-seven" />
               </div>
             )}
-            <div className="conversation__nextPage--container">
-              {nextParagragh === numberOfPages - 1 && (
-                <button
-                  onClick={() => hideSection()}
-                  className="converation__writeThoughts--style"
-                >
-                  Write Thoughts
-                </button>
-              )}
-              <button
-                onClick={() => getNextParagraph()}
-                className="conversation__nextPage--style"
-              >
-                Read More
-              </button>
-            </div>
           </React.Fragment>
         );
       }
@@ -155,6 +139,22 @@ const Start = ({
         <p className="conversation__header--style">Today's Conversation</p>
         <h1 className="conversation__title--style">{storyTitle}</h1>
         <div className="conversation__content--style">{displayStory()}</div>
+        <div className="conversation__nextPage--container">
+              {nextParagragh === numberOfPages - 1 && (
+                <button
+                  onClick={() => hideSection()}
+                  className="converation__writeThoughts--style"
+                >
+                  Write Thoughts
+                </button>
+              )}
+              <button
+                onClick={() => getNextParagraph()}
+                className="conversation__nextPage--style"
+              >
+                Read More
+              </button>
+            </div>
       </section>
       <section
         className={`start__section--container ${

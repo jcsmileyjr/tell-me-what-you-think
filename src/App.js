@@ -91,7 +91,7 @@ function App() {
       "TellMeWhatYouThink-Content",
       JSON.stringify(allStories)
     );
-    emailMessage();
+    //emailMessage();
   };
 
   // Cycle through all stories and if read but not marked as paid, display to the user the total amount earned.
