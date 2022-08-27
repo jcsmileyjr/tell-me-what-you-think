@@ -82,7 +82,10 @@ const Start = ({
             )}
             <div className="conversation__nextPage--container">
               {nextParagragh === numberOfPages - 1 && (
-                <button onClick={() => hideSection()} className="converation__writeThoughts--style">
+                <button
+                  onClick={() => hideSection()}
+                  className="converation__writeThoughts--style"
+                >
                   Write Thoughts
                 </button>
               )}
@@ -153,9 +156,11 @@ const Start = ({
         <h1 className="conversation__title--style">{storyTitle}</h1>
         <div className="conversation__content--style">{displayStory()}</div>
       </section>
-      <section className={`start__section--container ${
+      <section
+        className={`start__section--container ${
           scaleHeader ? "scale-in-center" : "scale-out-center"
-        } ${hideHeader ? "show" : "hide"}`}>
+        } ${hideHeader ? "show" : "hide"}`}
+      >
         <label className="thoughts__header--style">
           What are your thoughts
           <textarea
@@ -168,6 +173,15 @@ const Start = ({
           />
         </label>
         <div className="thoughts__button--container">
+          <button
+            className="conversation__nextPage--style"
+            onClick={() => {
+              showSection();
+              setNextParagraph(0);
+            }}
+          >
+            Read Story Again
+          </button>
           <button
             disabled={
               currentUserThoughts === "" || storyTitle === "Warning"
@@ -182,7 +196,6 @@ const Start = ({
           >
             NEXT
           </button>
-          <button className="conversation__nextPage--style" onClick={() => showSection()}>Read Story Again</button>
         </div>
       </section>
     </main>
