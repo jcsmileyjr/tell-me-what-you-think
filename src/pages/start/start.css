@@ -61,7 +61,7 @@
 
 .conversation__nextPage--container {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-self: center;
   margin-top: 10px;
 }
@@ -74,6 +74,17 @@
   padding: 10px 15px;
   font-weight: bold;
   font-size: larger;
+}
+
+.converation__writeThoughts--style {
+  border: none;
+  background-color: var(--Accent-Dark-Orange);
+  color: var(--Primary-Stone-White);
+  border-radius: 10px;
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: larger;
+  align-self: center;
 }
 
 .conversation__endOfArticle--container {
@@ -103,7 +114,7 @@
 
 .thoughts__button--container {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     margin-top: 10px;
 }
 
