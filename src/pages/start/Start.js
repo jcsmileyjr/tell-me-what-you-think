@@ -81,6 +81,14 @@ const Start = ({
               </div>
             )}
             <div className="conversation__nextPage--container">
+              {nextParagragh === numberOfPages - 1 && (
+                <button
+                  onClick={() => hideSection()}
+                  className="converation__writeThoughts--style"
+                >
+                  Write Thoughts
+                </button>
+              )}
               <button
                 onClick={() => getNextParagraph()}
                 className="conversation__nextPage--style"
@@ -124,11 +132,7 @@ const Start = ({
 
   return (
     <main>
-      <section
-        className={`start__section--container ${
-          scaleHeader ? "scale-out-center" : "scale-in-center"
-        } ${hideHeader ? "hide" : "show"}`}
-      >
+      <section className={`start__section--container`}>
         <div className="start__display--container">
           <div className="start__header--container">
             <p className="header__title--style">Articles Read</p>
@@ -143,12 +147,20 @@ const Start = ({
           Get paid for reading and sharing your honest intelligent thoughts.
         </p>
       </section>
-      <section className="start__section--container">
+      <section
+        className={`start__section--container ${
+          scaleHeader ? "scale-out-center" : "scale-in-center"
+        } ${hideHeader ? "hide" : "show"}`}
+      >
         <p className="conversation__header--style">Today's Conversation</p>
         <h1 className="conversation__title--style">{storyTitle}</h1>
         <div className="conversation__content--style">{displayStory()}</div>
       </section>
-      <section className="start__section--container">
+      <section
+        className={`start__section--container ${
+          scaleHeader ? "scale-in-center" : "scale-out-center"
+        } ${hideHeader ? "show" : "hide"}`}
+      >
         <label className="thoughts__header--style">
           What are your thoughts
           <textarea
@@ -161,6 +173,15 @@ const Start = ({
           />
         </label>
         <div className="thoughts__button--container">
+          <button
+            className="conversation__nextPage--style"
+            onClick={() => {
+              showSection();
+              setNextParagraph(0);
+            }}
+          >
+            Read Story Again
+          </button>
           <button
             disabled={
               currentUserThoughts === "" || storyTitle === "Warning"
