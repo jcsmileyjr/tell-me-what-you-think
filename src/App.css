@@ -25,7 +25,7 @@
   url("https://cdn.discordapp.com/attachments/744182992037216260/990016273217900584/rain2.png"),
   url("https://cdn.discordapp.com/attachments/744182992037216260/990016273456988240/rain3.png");
   
-  animation: snow 40.5s linear  infinite ;
+  animation: snow 60.5s linear  infinite ;
 
   overflow-y: visible;
   scrollbar-color: var(--Primary-Medium-Orange);
