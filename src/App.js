@@ -1,4 +1,5 @@
 import emailjs from "@emailjs/browser";
+import Swal from "sweetalert2";
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Start from "./pages/start/Start";
@@ -37,6 +38,7 @@ function App() {
 
   //When the app first loads, gets data via an API call and loads it to the app's state. Move the user to the "Start" page
   useEffect(() => {
+    checkForUserName();
     setupApp();
     setCurrentPage("start");
   }, []);
@@ -46,33 +48,63 @@ function App() {
     calculateMoneyEarnedBeforePay();
   });
 
+  // Checks if a user name is already saved and if not asks for one
+  const checkForUserName = () => {
+    let previousSavedName = localStorage.getItem("TellMeWhatYouThink-UserName");
+    if (previousSavedName === null) {
+      getUserName();
+    }
+  };
+
+  // Ask the user for a name and saves it.
+  const getUserName = async () => {
+    const { value: name } = await Swal.fire({
+      title: "Tell me what YOU think",
+      input: "text",
+      inputLabel: "What is your name?",
+      inputPlaceholder: "Example: Angela",
+    });
+
+    if (name === "") {
+      getUserName();
+    } else {
+      localStorage.setItem("TellMeWhatYouThink-UserName", JSON.stringify(name));
+    }
+  };
+
   /**
    * Function to email the data typed by the user (userThoughts state) using the EmailJS service & libary
    * @property {object} templateParams - data use by the EmailJS service to content via email
    * @property {string} service_id - email service id provided by EmailJS and setup via the online service. In a .env file & used by Nelify
    * @property {string} template_id - email template id provided by EmailJS and setup via the online service. In a .env file & used by Nelify
    * @property {string} user_id - user id provided by EmailJS and setup via the online service. In a .env file & used by Nelify
+   * @property {string} previousSavedName - Saved username
    */
   const emailMessage = () => {
-    var templateParams = {
-      name: "Ameerah Salha",
-      message: `${userThoughts}`,
-    };
-    emailjs
-      .send(
-        process.env.REACT_APP_SERVICE_ID,
-        process.env.REACT_APP_TEMPLATE_ID,
-        templateParams,
-        process.env.REACT_APP_USER_ID
-      )
-      .then(
-        function (response) {
-          console.log("SUCCESS!", response.status, response.text);
-        },
-        function (error) {
-          console.log("FAILED...", error);
-        }
-      );
+    let previousSavedName = localStorage.getItem("TellMeWhatYouThink-UserName");
+    let userName = JSON.parse(previousSavedName);
+    console.log("emailMessage(): ", userName)
+    if (userName === "Ameerah" || userName === "JC") {
+      var templateParams = {
+        name: `${userName}`,
+        message: `${userThoughts}`,
+      };
+      emailjs
+        .send(
+          process.env.REACT_APP_SERVICE_ID,
+          process.env.REACT_APP_TEMPLATE_ID,
+          templateParams,
+          process.env.REACT_APP_USER_ID
+        )
+        .then(
+          function (response) {
+            console.log("SUCCESS!", response.status, response.text);
+          },
+          function (error) {
+            console.log("FAILED...", error);
+          }
+        );
+    }
   };
 
   /**
@@ -91,7 +123,7 @@ function App() {
       "TellMeWhatYouThink-Content",
       JSON.stringify(allStories)
     );
-    //emailMessage();
+    emailMessage();
   };
 
   // Cycle through all stories and if read but not marked as paid, display to the user the total amount earned.
