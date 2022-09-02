@@ -49,7 +49,11 @@ function App() {
     calculateMoneyEarnedBeforePay();
   });
 
-  // Checks if a user name is already saved and if not asks for one
+  /**
+   * Function that checks if a user name is already saved and if not asks for one. Name used to determine
+   * if an email or database update should be made
+   * @property {string || null} previousSavedName - User name saved to localstorage
+   */
   const checkForUserName = () => {
     let previousSavedName = localStorage.getItem("TellMeWhatYouThink-UserName");
     if (previousSavedName === null) {
@@ -57,7 +61,10 @@ function App() {
     }
   };
 
-  // Ask the user for a name and saves it.
+  /**
+   * Funciton that asks the user for a name and saves it.
+   * @property {string} name - Value the user enter's into the pop up modal and save to localstorage
+   */
   const getUserName = async () => {
     const { value: name } = await Swal.fire({
       title: "Tell me what YOU think",
@@ -74,7 +81,7 @@ function App() {
   };
 
   /**
-   * Function to email the data typed by the user (userThoughts state) using the EmailJS service & libary
+   * Function to email the data typed by the user (userThoughts state) using the EmailJS service & libary. Called within the finishedArticle().
    * @property {object} templateParams - data use by the EmailJS service to content via email
    * @property {string} service_id - email service id provided by EmailJS and setup via the online service. In a .env file & used by Nelify
    * @property {string} template_id - email template id provided by EmailJS and setup via the online service. In a .env file & used by Nelify
@@ -128,7 +135,7 @@ function App() {
   };
 
   /**
-   *
+   * Function to update the Sanity.io database only if the user is myself or my daughter. Called within the finishedArticle().
    * @param {object} story - Current story with it's "read" property converted to true
    * @property {string} previousSavedName - user name used to determine if the database should be updated
    */
@@ -146,7 +153,8 @@ function App() {
     }
   };
 
-  // Cycle through all stories and if read but not marked as paid, display to the user the total amount earned.
+  // Cycle through all stories and if read but not marked as paid, display to the user the total amount earned.  
+  // Called within the finishedArticle(), each useEffect, and when the app data is initially setup. 
   const calculateMoneyEarnedBeforePay = () => {
     let totalAmount = 0;
     stories.forEach((article) => {
@@ -160,7 +168,11 @@ function App() {
     setAmountEarned(totalAmount);
   };
 
-  // Called withi the finishedArticle(), this updates the storiesRead, currentStory, currentTitle, and currentTakeaway state
+  /**
+   * Called within the finishedArticle(), this updates the storiesRead, currentStory, currentTitle, and currentTakeaway state
+   * @property {number} nextStoryNumber - Incremented number of stories read
+   * @property {string array} lines - A story broken into an array of sentences.
+   */
   const getNextArticle = () => {
     const nextStoryNumber = storiesRead + 1;
     setStoriesRead(nextStoryNumber);
@@ -170,12 +182,20 @@ function App() {
     setCurrentTakeaway(stories[nextStoryNumber].takeaway);
   };
 
-  // Use a Netlify API call to the Sanity.io database to update the app's data based on if the current data in local storage is fresh
+  /**
+   * Use a Netlify API call to the Sanity.io database to update the app's data based on if the current data in local storage is fresh
+   * @property {string array} previousSavedStories - Array of stories saved to local storage when the app was las used
+   * @property {string array} data - Array of stories downloaded from the database. 
+   * @property {storyNumber} number - Position in the array of stories that mark the current story to be read
+   * @property {string array} lines - A story broken into an array of sentences.
+   */
   const setupApp = async () => {
     fetch(".netlify/functions/getStories")
       .then((response) => response.json())
       .then((json) => {
         let data = json.data;
+
+        // Check to see if there is saved content and only use the newly fetch data if more stories have been added
         let previousSavedStories = localStorage.getItem(
           "TellMeWhatYouThink-Content"
         );
@@ -187,9 +207,13 @@ function App() {
           console.log("saved data overwritten newly loaded data");
         }
         setStories(data);
+
+        // Determine what was the last story read if the app was loaded previously. If not, use the first story in the array of stories
         if (localStorage.getItem("currentStory")) {
           const storyNumber = JSON.parse(localStorage.getItem("currentStory"));
           setStoriesRead(storyNumber);
+
+          // Determine if all stories have been read. If not, update app's data with current story
           if (storyNumber === data.length) {
             const lines = outOfStories.story.split(".");
             setCurrentStory(lines);
