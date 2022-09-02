@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# "Tell me what You Think" w/ React, Cypress.io, Sanity.io, & Netlify
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Landing Page Screenshot](./src/images/readme-1a.PNG)
 
-## Available Scripts
+### The challenge
 
-In the project directory, you can run:
+It's a React web app focused on encouraging my child to read, write, and explain "learning takeaways". The thoughts recorded are sent as an email to my email address so I can read and give me a chance to start a conversation later based on that information.
 
-### `npm start`
+### GIFs of app in use
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![GIF of in use](./src/images/tellmewhatyouthink-readmeGif-2.gif)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Production/Host Site
 
-### `npm test`
+https://tellmewhatyouthink.netlify.app/
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### How to run in development(Windows with NPM)
+1. Clone the repo.
+2. Open a terminal and navigate directory
+3. Type npm install
+4. When finish, type npm start
 
-### `npm run build`
+### How to run integration tests (Windows)
+1. In your terminal, get to the dinner folder. 
+2. Run the command, "npx cypress open".
+3. A broswer should open up with several tests
+4. Either click on the tests one by one OR look to the far right corner to tap the "Run 1 integration specs"
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Built with
+- Netlify functions for backend support and hosting
+- Sanity.io (headless CMS) for database functionality
+- Integration testing with Cypress.io
+- Production app hosted with Netlify
+- SweetAlert NPM library for pop up models
+- Axios NPM library for posting data through Nelify API functions to Sanity.io database
+- React
+- Semantic HTML5 markup
+- CSS custom properties
+- CSS Grid & CSS Flexbox
+- Mobile-first workflow
+- Javascript functionality like the Fetch API to grab data
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Author
+- Website - [JC Smiley](https://www.jcsmileyjr.com)
+- Twitter - [@JCSmiley4](https://twitter.com/JCSmiley4)
+- LinkedIn - [jcsmileyjr](https://www.linkedin.com/in/jcsmileyjr/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
