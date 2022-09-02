@@ -1,5 +1,6 @@
 import emailjs from "@emailjs/browser";
 import Swal from "sweetalert2";
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Start from "./pages/start/Start";
@@ -83,7 +84,7 @@ function App() {
   const emailMessage = () => {
     let previousSavedName = localStorage.getItem("TellMeWhatYouThink-UserName");
     let userName = JSON.parse(previousSavedName);
-    console.log("emailMessage(): ", userName)
+
     if (userName === "Ameerah" || userName === "JC") {
       var templateParams = {
         name: `${userName}`,
@@ -108,22 +109,41 @@ function App() {
   };
 
   /**
-   * Function call when the "Finish" button on the Thank You page is pressed. It update the current article object,
+   * Function call when the "Finish" button on the Thank You page is pressed. It update the current article object, update the database,
    * the amount of money earned, update local storage of the articles array, email the user thoughts, and reset the userthoughts state.
    */
   const finishArticle = () => {
     let allStories = stories;
     allStories[storiesRead].read = true;
+    updateStoryInDatabase(allStories[storiesRead]);
     setStories(allStories);
     getNextArticle();
     calculateMoneyEarnedBeforePay();
     setUserThoughts("");
-    // TODO: API call to save updated stories to database
     localStorage.setItem(
       "TellMeWhatYouThink-Content",
       JSON.stringify(allStories)
     );
     emailMessage();
+  };
+
+  /**
+   *
+   * @param {object} story - Current story with it's "read" property converted to true
+   * @property {string} previousSavedName - user name used to determine if the database should be updated
+   */
+  const updateStoryInDatabase = (story) => {
+    console.log("updateStoryInDatabase(), ", story);
+    let previousSavedName = localStorage.getItem("TellMeWhatYouThink-UserName");
+    let userName = JSON.parse(previousSavedName);
+
+    if (userName === "Ameerah" || userName === "JC") {
+      const url = ".netlify/functions/updateStory";
+      axios.post(url, JSON.stringify(story)).then(function (response) {
+        const data = response.data;
+        console.log(data);
+      });
+    }
   };
 
   // Cycle through all stories and if read but not marked as paid, display to the user the total amount earned.
