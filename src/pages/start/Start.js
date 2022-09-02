@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import { v4 as uuidv4 } from 'uuid';
 import React, { useState } from "react";
 import "./start.css";
 
@@ -58,7 +59,8 @@ const Start = ({
     if (storyBook.length !== 0) {
       book = storyBook[nextParagragh];
     }
-    const article = book.map((line, index) => {
+    const article = book.map((line) => {
+      let index = uuidv4();
       if (index !== book.length - 1) {
         return (
           <React.Fragment key={index}>
