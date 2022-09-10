@@ -20,17 +20,17 @@ https://tellmewhatyouthink.netlify.app/
 3. Type npm install
 4. When finish, type npm start
 
-### How to run integration tests (Windows)
-1. In your terminal, get to the dinner folder. 
-2. Run the command, "npx cypress open".
-3. A broswer should open up with several tests
-4. Either click on the tests one by one OR look to the far right corner to tap the "Run 1 integration specs"
+### How to run end to end tests with Cypress.io (Windows)
+1. Run the command, "npx cypress open".
+2. A broswer should open up with 'readStory.cy.js' test
+3. Click the test  OR look to the far right corner to tap the "Run 1 integration specs"
 
 ### Built with
 - Netlify functions for backend support and hosting
 - Sanity.io (headless CMS) for database functionality
 - Integration testing with Cypress.io
 - Production app hosted with Netlify
+- Cypress.io for end to end testing
 - SweetAlert NPM library for pop up models
 - Axios NPM library for posting data through Nelify API functions to Sanity.io database
 - React
