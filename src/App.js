@@ -1,7 +1,8 @@
 import emailjs from "@emailjs/browser";
 import Swal from "sweetalert2";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createElement } from "react";
+import fakeData from "./develepment-data/test-data.json";
 import "./App.css";
 import Start from "./pages/start/Start";
 import ThankYou from "./pages/thankYou/ThankYou";
@@ -153,8 +154,8 @@ function App() {
     }
   };
 
-  // Cycle through all stories and if read but not marked as paid, display to the user the total amount earned.  
-  // Called within the finishedArticle(), each useEffect, and when the app data is initially setup. 
+  // Cycle through all stories and if read but not marked as paid, display to the user the total amount earned.
+  // Called within the finishedArticle(), each useEffect, and when the app data is initially setup.
   const calculateMoneyEarnedBeforePay = () => {
     let totalAmount = 0;
     stories.forEach((article) => {
@@ -183,56 +184,72 @@ function App() {
   };
 
   /**
-   * Use a Netlify API call to the Sanity.io database to update the app's data based on if the current data in local storage is fresh
+   * Use a Netlify API call to the Sanity.io database to update the app's data based on if the current data in local storage is
+   * If this a development environment, then test data is used
    * @property {string array} previousSavedStories - Array of stories saved to local storage when the app was las used
-   * @property {string array} data - Array of stories downloaded from the database. 
+   * @property {string array} data - Array of stories downloaded from the database.
+   * @property {string} currentWindowLocation - snapshot of current URL to determine if this is developmen or PROD
+   */
+  const setupApp = async () => {
+    const currentWindowLocation = window.location.href;
+    if (currentWindowLocation === "http://localhost:3000/") {
+      setStories(fakeData);
+      createStory(fakeData);
+    } else {
+      fetch(".netlify/functions/getStories")
+        .then((response) => response.json())
+        .then((json) => {
+          let data = json.data;
+
+          // Check to see if there is saved content and only use the newly fetch data if more stories have been added
+          let previousSavedStories = localStorage.getItem(
+            "TellMeWhatYouThink-Content"
+          );
+          if (
+            previousSavedStories !== null &&
+            previousSavedStories.length >= data.length
+          ) {
+            data = JSON.parse(previousSavedStories);
+            console.log("saved data overwritten newly loaded data");
+          }
+
+          setStories(data); // Save the stories to the app's state
+          createStory(data); // Determine which story to read and break the story into readable chunks
+        });
+    }
+  };
+
+  /**
+   * Determine which story is to be read first and break the story into readable chuncks
+   * @param {string array} data - Array of story objects from from a Netilfiy function API call to a database or test data for develepment
    * @property {storyNumber} number - Position in the array of stories that mark the current story to be read
    * @property {string array} lines - A story broken into an array of sentences.
    */
-  const setupApp = async () => {
-    fetch(".netlify/functions/getStories")
-      .then((response) => response.json())
-      .then((json) => {
-        let data = json.data;
+  const createStory = (data) => {
+    // Determine what was the last story read if the app was loaded previously. If not, use the first story in the array of stories
+    if (localStorage.getItem("currentStory")) {
+      const storyNumber = JSON.parse(localStorage.getItem("currentStory"));
+      setStoriesRead(storyNumber);
 
-        // Check to see if there is saved content and only use the newly fetch data if more stories have been added
-        let previousSavedStories = localStorage.getItem(
-          "TellMeWhatYouThink-Content"
-        );
-        if (
-          previousSavedStories !== null &&
-          previousSavedStories.length >= data.length
-        ) {
-          data = JSON.parse(previousSavedStories);
-          console.log("saved data overwritten newly loaded data");
-        }
-        setStories(data);
+      // Determine if all stories have been read. If not, update app's data with current story
+      if (storyNumber === data.length) {
+        const lines = outOfStories.story.split(".");
+        setCurrentStory(lines);
+        setCurrentTitle(outOfStories.title);
+      } else {
+        const lines = data[storyNumber].story.split(".");
+        setCurrentStory(lines);
+        setCurrentTitle(data[storyNumber].title);
+        setCurrentTakeaway(data[storyNumber].takeaway);
+      }
 
-        // Determine what was the last story read if the app was loaded previously. If not, use the first story in the array of stories
-        if (localStorage.getItem("currentStory")) {
-          const storyNumber = JSON.parse(localStorage.getItem("currentStory"));
-          setStoriesRead(storyNumber);
-
-          // Determine if all stories have been read. If not, update app's data with current story
-          if (storyNumber === data.length) {
-            const lines = outOfStories.story.split(".");
-            setCurrentStory(lines);
-            setCurrentTitle(outOfStories.title);
-          } else {
-            const lines = data[storyNumber].story.split(".");
-            setCurrentStory(lines);
-            setCurrentTitle(data[storyNumber].title);
-            setCurrentTakeaway(data[storyNumber].takeaway);
-          }
-
-          calculateMoneyEarnedBeforePay();
-        } else {
-          localStorage.setItem("currentStory", JSON.stringify(0));
-          const lines = data[0].story.split(".");
-          setCurrentStory(lines);
-          setCurrentTakeaway(data[0].takeaway);
-        }
-      });
+      calculateMoneyEarnedBeforePay();
+    } else {
+      localStorage.setItem("currentStory", JSON.stringify(0));
+      const lines = data[0].story.split(".");
+      setCurrentStory(lines);
+      setCurrentTakeaway(data[0].takeaway);
+    }
   };
 
   /**
